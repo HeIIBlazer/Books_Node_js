@@ -1,49 +1,49 @@
-const {Sequelize} = require('sequelize');
+const { Sequelize } = require('sequelize');
 const db = require('../connect/database')
-const {DataTypes,Model} = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const Category = require('./category');
 const Author = require('./author');
-class Book extends Model {}
+class Book extends Model { }
 
 Book.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            primaryKey:true,
-            autoIncrement:true,
+            primaryKey: true,
+            autoIncrement: true,
             field: 'book_id'
         },
-        title:{
+        title: {
             type: DataTypes.STRING(100),
-            allowNull:false,
+            allowNull: false,
         },
         isbn: {
             type: DataTypes.BIGINT,
-            allowNull:true,
+            allowNull: true,
         },
         pageCount: {
             type: DataTypes.INTEGER,
-            allowNull:false,
+            allowNull: false,
         },
         publishedDate: {
             type: DataTypes.DATE,
-            allowNull:true,
+            allowNull: true,
         },
         thumbnailUrl: {
             type: DataTypes.STRING(255),
-            allowNull:true,
+            allowNull: true,
         },
         shortDescription: {
             type: DataTypes.STRING(300),
-            allowNull:true,
+            allowNull: true,
         },
         longDescription: {
             type: DataTypes.STRING(800),
-            allowNull:true,
+            allowNull: true,
         },
         status: {
             type: DataTypes.ENUM('PUBLISH', 'MEAP'),
-            allowNull:false,
+            allowNull: false,
         },
         // author: {
         //     type: DataTypes.STRING,
@@ -65,8 +65,8 @@ Book.init(
         // }
     },
     {
-        sequelize:db,
-        timestamps:false,
+        sequelize: db,
+        timestamps: false,
         modelName: 'book',
     },
 )

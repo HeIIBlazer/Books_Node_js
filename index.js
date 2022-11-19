@@ -1,49 +1,50 @@
-const db = require('./connect/database.js')
-const {Sequelize,DataTypes,Model} = require('sequelize')
-let Author = require('./models/author.js')
-const { sequelize } = require('./models/books.js')
-let Books = require('./models/books.js')
-let Categories = require('./models/category.js')
-let BooksAuthors = require('./models/authorsbooks.js')
-let BooksCategories = require('./models/bookscategories.js')
-
-const express = require("express")
-const cors = require("cors")
+const express = require('express')
+const cors = require('cors')
 
 const app = express()
 
-const swaggerJsdoc = require("swagger-jsdoc")
-const swaggerUi = require("swagger-ui-express")
+const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
 
 app.use(cors())
 
+//parse request of content-type - application/json
 app.use(express.json())
 
-app.use(express.urlencoded({ extended: true}))
+// parse request of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }))
 
+// simple route
 app.get("/", (req,res) => {
-    res.json({ message: "Welcome to library Restful API"})
+    res.json({ message: "Welcome to library RESTful API" })
 })
 
-require("./routes/authorRoutes")(app);
 
+require("./routes/categoryRoutes")(app);
+require("./routes/bookRoutes")(app);
+require("./routes/authorRoutes")(app);
+require("./routes/authorBookRoutes")(app);
+require("./routes/bookCategoryRoutes")(app);
+
+
+// Swagger
 const options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "Library Example",
+            title: "Library Example Express API with Swagger",
             version: "0.1.0",
-            description:
-                "This is a simple CRUD API"
+            description: 
+                "This is a simple CRUD API application made with Express and documented with Swagger"
         },
         servers: [
             {
                 url: "http://localhost:3000/",
-                description: 'Development server',
+                description: 'Development server'
             },
         ],
     },
-    apis: ["./routes/*"],
+    apis: ["./routes/*"]
 };
 
 const specs = swaggerJsdoc(options);
@@ -53,8 +54,9 @@ app.use(
     swaggerUi.setup(specs)
 );
 
-const PORT = process.env.PORT || 3000
+
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)
 })
-

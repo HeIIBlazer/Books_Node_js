@@ -1,6 +1,6 @@
 const {Sequelize, DataTypes, Model} = require('sequelize');
 const db = require('../connect/database')
-const Books = require('./books')
+const Books = require('./book')
 class Author extends Model {}
 Author.init( {
     id: {
@@ -10,20 +10,10 @@ Author.init( {
         allowNull:false,
         field: 'author_id'
     },
-    fullname: {
+    full_name: {
         type: Sequelize.STRING(100),
         allowNull:false
     }
-    // createdAt: {
-    //     type:DataTypes.DATE,
-    //     defaultValue: Sequelize.fn('NOW'),
-    //     allowNull: false
-    // },
-    // updatedAt: {
-    //     type:DataTypes.DATE,
-    //     defaultValue: Sequelize.fn('NOW'),
-    //     allowNull: false
-    // }
 },{
     sequelize: db,
     timestamps:false,

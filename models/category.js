@@ -9,20 +9,10 @@ Category.init ({
         allowNull:false,
         field: 'category_id',
     },
-    categoryName: {
+    name: {
         type: DataTypes.STRING,
         allowNull:false
     }
-    // createdAt: {
-    //     type:DataTypes.DATE,
-    //     defaultValue: Sequelize.fn('NOW'),
-    //     allowNull: false
-    // },
-    // updatedAt: {
-    //     type:DataTypes.DATE,
-    //     defaultValue: Sequelize.fn('NOW'),
-    //     allowNull: false
-    // }
 },{
     sequelize: db,
     modelName: "category",

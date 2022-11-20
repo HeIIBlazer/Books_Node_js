@@ -47,38 +47,38 @@ module.exports = app => {
     //Create a new category
     router.post("/", categories.create)
 
-    /**
-     * 
-     * @swagger
-     * /api/categories:
-     *   get:
-     *     summary: Retrieve a list of categories.
-     *     description: Retrieve a list of categories.
-     *     responses:
-     *       200:
-     *         description: A list of categories.
-     *         content:
-     *           application/json:
-     *             schema:
-     *               type: object
-     *               properties:
-     *                 data:
-     *                   type: array
-     *                   items:
-     *                     type: object
-     *                     properties:
-     *                      id:
-     *                        type: integer
-     *                        description: The category ID.
-     *                        example: 1
-     *                      name:
-     *                        type: string
-     *                        description: The category's name.
-     *                        example: RESTful API
-     *                                  
-     */
-    // Retrieve all Categories from the database
-    router.get("/", categories.findAll)
+    // /**
+    //  * 
+    //  * @swagger
+    //  * /api/categories:
+    //  *   get:
+    //  *     summary: Retrieve a list of categories.
+    //  *     description: Retrieve a list of categories.
+    //  *     responses:
+    //  *       200:
+    //  *         description: A list of categories.
+    //  *         content:
+    //  *           application/json:
+    //  *             schema:
+    //  *               type: object
+    //  *               properties:
+    //  *                 data:
+    //  *                   type: array
+    //  *                   items:
+    //  *                     type: object
+    //  *                     properties:
+    //  *                      id:
+    //  *                        type: integer
+    //  *                        description: The category ID.
+    //  *                        example: 1
+    //  *                      name:
+    //  *                        type: string
+    //  *                        description: The category's name.
+    //  *                        example: RESTful API
+    //  *                                  
+    //  */
+    // // Retrieve all Categories from the database
+    // router.get("/", categories.findAll)
 
     /**
      * 

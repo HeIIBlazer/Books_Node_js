@@ -25,34 +25,34 @@ module.exports = app => {
     const authorBook = require('../controllers/authorBookController')
     const router = require("express").Router()
 
-    /**
-     * 
-     * @swagger
-     * /api/authorBook:
-     *   post:
-     *     summary: Create and Save new Author and Book connection.
-     *     requestBody:
-     *       content:
-     *         application/json:
-     *           schema:
-     *             type: object
-     *             properties: 
-     *               id:
-     *                 type: integer
-     *               authorId:
-     *                 type:integer
-     *               bookId:
-     *                 type:integer
-     *             example:
-     *               authorId: 
-     *               bookId: 
-     *     responses:
-     *       '200':
-     *         description: OK
-     *                                  
-     */
-    //Create Author and Book connection
-    router.post("/", authorBook.create)
+    // /**
+    //  * 
+    //  * @swagger
+    //  * /api/authorBook:
+    //  *   post:
+    //  *     summary: Create and Save new Author and Book connection.
+    //  *     requestBody:
+    //  *       content:
+    //  *         application/json:
+    //  *           schema:
+    //  *             type: object
+    //  *             properties: 
+    //  *               id:
+    //  *                 type: integer
+    //  *               authorId:
+    //  *                 type:integer
+    //  *               bookId:
+    //  *                 type:integer
+    //  *             example:
+    //  *               authorId: 
+    //  *               bookId: 
+    //  *     responses:
+    //  *       '200':
+    //  *         description: OK
+    //  *                                  
+    //  */
+    // //Create Author and Book connection
+    // router.post("/", authorBook.create)
 
     /**
      * 

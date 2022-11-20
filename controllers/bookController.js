@@ -123,9 +123,10 @@ exports.getBooksByTitle = (req, res) => {
         })
 }
 
+
 //GET Books by author
 exports.getBooksByAuthor = (req, res) => {
-    if (!req.body.author_id) {
+    if (!req.body.authorId) {
         res.status(400).send({
             message: "Content can not be empty!"
         })
@@ -135,11 +136,12 @@ exports.getBooksByAuthor = (req, res) => {
     Book.findAll({
         include: [
             {
-            model: Author,
-            where: {
-                id: req.body.author_id
+                model: AuthorBooks,
+                where: {
+                    authorId: req.body.authorId
+                }
             }
-        }]
+        ]
     })
         .then(data => {
             res.send(data);

@@ -13,6 +13,7 @@ authorsbooks.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
+    unique: false,
     references: {
       model: 'authors',
       key: 'author_id'
@@ -21,6 +22,7 @@ authorsbooks.init({
   bookId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    unique: false,
     primaryKey: true,
     references: {
       model: 'book',
@@ -34,7 +36,6 @@ authorsbooks.init({
   indexes: [
     {
       name: "PRIMARY",
-      unique: true,
       using: "BTREE",
       fields: [
         { name: "authorId" },

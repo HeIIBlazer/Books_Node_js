@@ -47,37 +47,37 @@ module.exports = app => {
     //Create a new author
     router.post("/", authors.create)
 
-    /**
-    * 
-    * @swagger
-    * /api/authors:
-    *   get:
-    *     summary: Retrieve a list of authors.
-    *     description: Retrieve a list of authors.
-    *     responses:
-    *       200:
-    *         description: A list of authors.
-    *         content:
-    *           application/json:
-    *             schema:
-    *               type: object
-    *               properties:
-    *                 data:
-    *                   type: array
-    *                   items:
-    *                     type: object
-    *                     properties:
-    *                      id:
-    *                        type: integer
-    *                        description: The author ID.
-    *                        example: 1
-    *                      full_name:
-    *                        type: string
-    *                        description: The author's name.
-    *                        example: Joe Walker
-    */
-    // Retrieve a list of authors
-    router.get("/", authors.findAll)
+    // /**
+    // * 
+    // * @swagger
+    // * /api/authors:
+    // *   get:
+    // *     summary: Retrieve a list of authors.
+    // *     description: Retrieve a list of authors.
+    // *     responses:
+    // *       200:
+    // *         description: A list of authors.
+    // *         content:
+    // *           application/json:
+    // *             schema:
+    // *               type: object
+    // *               properties:
+    // *                 data:
+    // *                   type: array
+    // *                   items:
+    // *                     type: object
+    // *                     properties:
+    // *                      id:
+    // *                        type: integer
+    // *                        description: The author ID.
+    // *                        example: 1
+    // *                      full_name:
+    // *                        type: string
+    // *                        description: The author's name.
+    // *                        example: Joe Walker
+    // */
+    // // Retrieve a list of authors
+    // router.get("/", authors.findAll)
 
     /**
     * 

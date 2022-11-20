@@ -233,7 +233,7 @@ module.exports = app => {
     router.put("/", books.update)
 
 
-    // GET МЕТОДЫ (Написаны через POST, так как swagger не поддерживает ввод body в GET, так же для работы нужно комментить предыдущие POST методы)
+    // GET МЕТОДЫ
     // /**
     // * 
     // * @swagger
@@ -274,6 +274,7 @@ module.exports = app => {
     // //GET Books by titles
     // router.post("/", books.getBooksByTitle)
 
+
     /**
     * 
     * @swagger
@@ -288,10 +289,12 @@ module.exports = app => {
     *             properties:
     *               id:
     *                 type: integer
-    *               full_name:
-    *                   type: string
+    *               authorId:
+    *                   type: integer
+    *               bookId:
+    *                   type: integer
     *             example:
-    *                 author_id: 
+    *                 authorId: 
     *     responses:
     *       '200':
     *         description: OK

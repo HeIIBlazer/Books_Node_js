@@ -71,3 +71,30 @@ exports.update = (req, res) => {
             })
         })
 }
+
+//Get Метод
+
+//GET Books by author
+exports.getBooksByAuthor = (req, res) => {
+    if (!req.body.authorId) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        })
+        return
+    }
+
+    AuthorBook.findAll({
+        where: {
+            authorId: req.body.authorId
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occured while retrieving Books by author"
+            })
+        })
+}

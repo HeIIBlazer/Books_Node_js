@@ -94,56 +94,56 @@ module.exports = app => {
     *                        example: PUBLISH                            
     */
     //Retrieve a list of Books
-    router.get('/', books.findAll);
+    router.get('/bb', books.findAll);
 
-    // /**
-    // * 
-    // * @swagger
-    // * /api/books:
-    // *   post:
-    // *     summary: Create and Save new book.
-    // *     requestBody:
-    // *       content:
-    // *         application/json:
-    // *           schema:
-    // *             type: object
-    // *             properties:
-    // *               id:
-    // *                 type: integer
-    // *               title:
-    // *                 type: string
-    // *               isbn:
-    // *                 type: bigint
-    // *               pageCount:
-    // *                 type: integer
-    // *               publishedDate:
-    // *                 type:  dateTime
-    // *               thumbnailUrl:
-    // *                 type: string
-    // *               shortDescription:
-    // *                 type: string
-    // *               longDescription:
-    // *                 type: string
-    // *               status:
-    // *                 type: enum('PUBLISH', 'NOT PUBLISH')
-    // *             example:
-    // *                 title: ""
-    // *                 isbn:
-    // *                 pageCount:
-    // *                 publishedDate:
-    // *                 thumbnailUrl: ""
-    // *                 shortDescription: ""
-    // *                 longDescription: ""
-    // *                 status: ""
-    // *     responses:
-    // *       '200':
-    // *         description: OK
-    // *                   
-    // *                      
-    // *                                 
-    // */
-    // // Create a new Book
-    // router.post('/', books.create);
+    /**
+    * 
+    * @swagger
+    * /api/books:
+    *   post:
+    *     summary: Create and Save new book.
+    *     requestBody:
+    *       content:
+    *         application/json:
+    *           schema:
+    *             type: object
+    *             properties:
+    *               id:
+    *                 type: integer
+    *               title:
+    *                 type: string
+    *               isbn:
+    *                 type: bigint
+    *               pageCount:
+    *                 type: integer
+    *               publishedDate:
+    *                 type:  dateTime
+    *               thumbnailUrl:
+    *                 type: string
+    *               shortDescription:
+    *                 type: string
+    *               longDescription:
+    *                 type: string
+    *               status:
+    *                 type: enum('PUBLISH', 'NOT PUBLISH')
+    *             example:
+    *                 title: ""
+    *                 isbn:
+    *                 pageCount:
+    *                 publishedDate:
+    *                 thumbnailUrl: ""
+    *                 shortDescription: ""
+    *                 longDescription: ""
+    *                 status: ""
+    *     responses:
+    *       '200':
+    *         description: OK
+    *                   
+    *                      
+    *                                 
+    */
+    // Create a new Book
+    router.post('/', books.create);
 
 
     /**
@@ -233,55 +233,14 @@ module.exports = app => {
     router.put("/", books.update)
 
 
-    // GET МЕТОДЫ
-    // /**
-    // * 
-    // * @swagger
-    // * /api/books:
-    // *   post:
-    // *     summary: GET Books By title.
-    // *     requestBody:
-    // *       content:
-    // *         application/json:
-    // *           schema:
-    // *             type: object
-    // *             properties:
-    // *               id:
-    // *                 type: integer
-    // *               title:
-    // *                 type: string
-    // *               isbn:
-    // *                 type: bigint
-    // *               pageCount:
-    // *                 type: integer
-    // *               publishedDate:
-    // *                 type:  dateTime
-    // *               thumbnailUrl:
-    // *                 type: string
-    // *               shortDescription:
-    // *                 type: string
-    // *               longDescription:
-    // *                 type: string
-    // *               status:
-    // *                 type: enum('PUBLISH', 'NOT PUBLISH')
-    // *             example:
-    // *                 title: ""
-    // *     responses:
-    // *       '200':
-    // *         description: OK
-
-    // */
-    // //GET Books by titles
-    // router.post("/", books.getBooksByTitle)
-
-
+    //GET МЕТОДЫ
     /**
     * 
     * @swagger
-    * /api/books:
-    *   post:
-    *     summary: GET Books By Author.
-    *     requestBody:
+    * /api/books/:title:
+    *   get:
+    *     summary: GET Books By title.
+    *     params:
     *       content:
     *         application/json:
     *           schema:
@@ -289,19 +248,37 @@ module.exports = app => {
     *             properties:
     *               id:
     *                 type: integer
-    *               authorId:
-    *                   type: integer
-    *               bookId:
-    *                   type: integer
+    *               title:
+    *                 type: string
+    *               isbn:
+    *                 type: bigint
+    *               pageCount:
+    *                 type: integer
+    *               publishedDate:
+    *                 type:  dateTime
+    *               thumbnailUrl:
+    *                 type: string
+    *               shortDescription:
+    *                 type: string
+    *               longDescription:
+    *                 type: string
+    *               status:
+    *                 type: enum('PUBLISH', 'NOT PUBLISH')
     *             example:
-    *                 authorId: 
+    *                 title: ""
     *     responses:
     *       '200':
     *         description: OK
-                               
+
     */
-    //GET Books by Author
-    router.post("/", books.getBooksByAuthor)
+    //GET Books by titles
+    router.get("/byTitle/:title", books.getBooksByTitle)
+
+    //NOT WORKING
+    // //Get books by category
+    // router.get("/byCategory/:category", books.getBooksByCategory )
+
+
 
     app.use('/api/books', router)
 }

@@ -1,13 +1,13 @@
+let Category = require('./models/category');
 let Book = require('./models/book');
 let Author = require('./models/author');
-let Category = require('./models/category');
-let BookCategory = require('./models/booksCategories');
-let AuthorBook = require('./models/authorsBooks');
+let BooksCategories = require('./models/bookscategories');
+let AuthorsBooks = require('./models/authorsbooks');
 
-Book.belongsToMany(Author, { through: AuthorBook });
-Book.belongsToMany(Category, { through: BookCategory });
-Author.belongsToMany(Book, { through: AuthorBook });
-Category.belongsToMany(Book, { through: BookCategory });
+Book.belongsToMany(Author, { through: AuthorsBooks });
+Book.belongsToMany(Category, { through: BooksCategories });
+Author.belongsToMany(Book, { through: AuthorsBooks });
+Category.belongsToMany(Book, { through: BooksCategories });
 
 const db = require('./connect/database');
 const books_json = require('./jsonParse/Data');

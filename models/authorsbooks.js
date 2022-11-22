@@ -1,54 +1,45 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const db = require('../connect/database')
-const sequelize = require('../connect/database.js')
-class authorsbooks extends Model { }
-authorsbooks.init({
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false,
-  },
-  authorId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    unique: false,
-    references: {
-      model: 'authors',
-      key: 'author_id'
-    }
-  },
-  bookId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: false,
-    primaryKey: true,
-    references: {
-      model: 'book',
-      key: 'book_id'
-    }
-  }
-}, {
-  sequelize,
-  tableName: 'authorsbooks',
-  timestamps: true,
-  indexes: [
+const { DataTypes, Model } = require('sequelize');
+const db = require('../connect/database');
+const Book = require('./book');
+const Author = require('./author');
+
+class authorsbooks extends Model {}
+authorsbooks.init(
     {
-      name: "PRIMARY",
-      using: "BTREE",
-      fields: [
-        { name: "authorId" },
-        { name: "bookId" },
-      ]
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            allowNull: false
+        },
+        bookId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: Book,
+                key: 'id'
+            }
+        },
+        authorId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: Author,
+                key: 'id'
+            }
+        },
     },
     {
-      name: "bookId",
-      using: "BTREE",
-      fields: [
-        { name: "bookId" },
-      ]
-    },
-  ]
-});
-module.exports = authorsbooks
+        sequelize: db,
+        modelName: 'book_author',
+        timestamps: true,
+        indexes: [
+            {
+                unique: true,
+                fields: ['bookId', 'authorId']
+            }
+        ]
+    }
+);
+
+module.exports = authorsbooks;

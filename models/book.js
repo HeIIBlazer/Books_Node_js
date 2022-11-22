@@ -1,74 +1,55 @@
-const { Sequelize } = require('sequelize');
-const db = require('../connect/database')
-const { DataTypes, Model } = require('sequelize');
-const Category = require('./category');
-const Author = require('./author');
-class Book extends Model { }
+const { DataTypes, Model, Sequelize } = require('sequelize');
+const db = require('../connect/database');
+const Category = require('../models/Category');
 
+class Book extends Model {}
 Book.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
             autoIncrement: true,
-            field: 'book_id'
+            primaryKey: true,
         },
         title: {
             type: DataTypes.STRING(100),
-            allowNull: false,
+            allowNull: false
         },
         isbn: {
             type: DataTypes.BIGINT,
-            allowNull: true,
+            allowNull: false,
+            unique: true
         },
         pageCount: {
             type: DataTypes.INTEGER,
-            allowNull: false,
         },
         publishedDate: {
             type: DataTypes.DATE,
-            allowNull: true,
         },
         thumbnailUrl: {
-            type: DataTypes.STRING(255),
-            allowNull: true,
-        },
-        shortDescription: {
-            type: DataTypes.STRING(300),
-            allowNull: true,
+            type: DataTypes.STRING(255)
         },
         longDescription: {
-            type: DataTypes.STRING(800),
-            allowNull: true,
+            type: DataTypes.STRING(255)
+        },
+        shortDescription: {
+            type: DataTypes.STRING(255)
         },
         status: {
-            type: DataTypes.ENUM('PUBLISH', 'MEAP'),
-            allowNull: false,
+            type: DataTypes.ENUM('PUBLISH', 'NOT PUBLISH'),
+            defaultValue: 'NOT PUBLISH'
         },
-        // author: {
-        //     type: DataTypes.STRING,
-        //     allowNull:false,
-        // },
-        // category: {
-        //     type: DataTypes.STRING,
-        //     allowNull:false,
-        // },
-        // createdAt: {
-        //     type:DataTypes.DATE,
-        //     defaultValue: Sequelize.fn('NOW'),
-        //     allowNull: false
-        // },
-        // updatedAt: {
-        //     type:DataTypes.DATE,
-        //     defaultValue: Sequelize.fn('NOW'),
-        //     allowNull: false
-        // }
     },
     {
         sequelize: db,
-        timestamps: false,
         modelName: 'book',
-    },
-)
+        timestamps: false,
+        paranoid: true,
+        // include:[
+        //     {
+        //         model: Category, 
+        //     }
+        // ]
+    }
+);
 
-module.exports = Book
+module.exports = Book;

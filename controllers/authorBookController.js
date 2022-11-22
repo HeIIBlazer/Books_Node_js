@@ -76,7 +76,7 @@ exports.update = (req, res) => {
 
 //GET Books by author
 exports.getBooksByAuthor = (req, res) => {
-    if (!req.body.authorId) {
+    if (!req.params.authorId) {
         res.status(400).send({
             message: "Content can not be empty!"
         })
@@ -85,7 +85,7 @@ exports.getBooksByAuthor = (req, res) => {
 
     AuthorBook.findAll({
         where: {
-            authorId: req.body.authorId
+            authorId: req.params.authorId
         }
     })
         .then(data => {

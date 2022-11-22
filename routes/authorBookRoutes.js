@@ -113,5 +113,7 @@ module.exports = app => {
     //Update Author and Book connection
     router.put("/", authorBook.update)
 
+    router.get("/byCategory/:category", authorBook.getBooksByAuthor)
+
     app.use('/api/authorBook', router)
 }

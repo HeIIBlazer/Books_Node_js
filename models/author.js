@@ -1,22 +1,26 @@
-const {Sequelize, DataTypes, Model} = require('sequelize');
-const db = require('../connect/database')
-const Books = require('./book')
+const { DataTypes, Model } = require('sequelize');
+const db = require('../connect/database');
+
 class Author extends Model {}
-Author.init( {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true,
-        allowNull:false,
-        field: 'author_id'
+Author.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            allowNull: false
+        },
+        full_name: {
+            type: DataTypes.STRING(150),
+            allowNull: false
+        },
     },
-    full_name: {
-        type: Sequelize.STRING(100),
-        allowNull:false
+    {
+        sequelize: db,
+        modelName: 'author',
+        timestamps: true,
+        paranoid: true,
     }
-},{
-    sequelize: db,
-    timestamps:false,
-    modelName: "author",
-})
-module.exports = Author
+);
+
+module.exports = Author;

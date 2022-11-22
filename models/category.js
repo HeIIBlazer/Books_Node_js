@@ -1,22 +1,26 @@
-const {Sequelize, DataTypes, Model} = require('sequelize');
-const db = require('../connect/database')
+const { DataTypes, Model } = require('sequelize');
+const db = require('../connect/database');
+
 class Category extends Model {}
-Category.init ({
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true,
-        allowNull:false,
-        field: 'category_id',
+Category.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            allowNull: false
+        },
+        name: {
+            type: DataTypes.STRING(30),
+            allowNull: false
+        },
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull:false
+    {
+        sequelize: db,
+        modelName: 'category',
+        timestamps: true,
+        paranoid: true,
     }
-},{
-    sequelize: db,
-    modelName: "category",
-    timestamps:false
-    // tableName: "category"
-})
-module.exports = Category
+);
+
+module.exports = Category;

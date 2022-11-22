@@ -1,6 +1,5 @@
 const Book = require('../models/book')
-const Author = require('../models/author')
-const AuthorBooks = require('../models/authorsbooks');
+const Category = require('../models/category')
 const Sequelize = require('sequelize');
 const Operator = Sequelize.Op;
 
@@ -100,7 +99,7 @@ exports.update = (req, res) => {
 
 //GET Books by titles
 exports.getBooksByTitle = (req, res) => {
-    if (!req.body.title) {
+    if (!req.params.title) {
         res.status(400).send({
             message: "Content can not be empty!"
         })
@@ -109,7 +108,7 @@ exports.getBooksByTitle = (req, res) => {
 
     Book.findAll({
         where: {
-            title: { [Operator.like]: `%${req.body.title}%` }
+            title: { [Operator.like]: `%${req.params.title}%` }
         }
     })
         .then(data => {
@@ -123,33 +122,40 @@ exports.getBooksByTitle = (req, res) => {
         })
 }
 
+//NOT WORKING
 
-//GET Books by author
-exports.getBooksByAuthor = (req, res) => {
-    if (!req.body.authorId) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        })
-        return
-    }
-
-    Book.findAll({
-        include: [
-            {
-                model: AuthorBooks,
-                where: {
-                    authorId: req.body.authorId
-                }
-            }
-        ]
-    })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occured while retrieving Books by author"
-            })
-        })
-}
+// exports.getBooksByCategory = async (req, res) => {
+//     if(!req.params.category) {
+//         res.status(400).send({
+//             message: 'No category id provided!'
+//         });
+//         return;
+//     }
+//     const category = await Category.findOne({
+//         where: { name: req.params.category },
+//         attributes: ['id']
+//     });
+//     Book.findAll({
+//         attributes: [
+//             'title', 'isbn', 'pageCount', 'publishedDate', 
+//             'longDescription', 'shortDescription', 'status'
+//         ],
+//         include: [
+//             {
+//                 model: Category,
+//                 where: {
+//                     id: category.id
+//                 }, 
+//                 attributes: ['id', 'name']
+//             },
+//         ]
+//     })
+//     .then(data => {
+//         res.send(data);
+//     })
+//     .catch(err => {
+//         res.status(500).send({
+//             message: err.message || 'Unable to get books!'
+//         });
+//     });
+// }
